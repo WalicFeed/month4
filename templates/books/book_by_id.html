@@ -1,0 +1,17 @@
+<p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Planet:</strong> {{ book.planet }}</p>
+    <p><strong>Noble House:</strong> {{ book.house }}</p>
+    <p><strong>Main Character:</strong> {{ book.main_character }}</p>
+    <p><strong>Genre:</strong> {{ book.genre }}</p>
+    <p><strong>Publication Year:</strong> {{ book.publication_year }}</p>
+    <h2>Description</h2>
+    <p>{{ book.full_description }}</p>
+    <p><strong>Reservation Count:</strong> {{ book.reservation_count }}</p>
+    {% if book.note %}
+        <p><strong>Note:</strong> {{ book.note }}</p>
+    {% endif %}
+    {% if book.can_be_bought_url %}
+        <a href="{{ book.can_be_bought_url }}">Buy this book</a>
+    {% endif %}
+    <br><br>
+    <a href="{% url 'get_books' %}">Back to books</a>

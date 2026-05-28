@@ -1,0 +1,14 @@
+<h1>Dune books</h1>
+<ul>
+    {% for book in books %}
+        <li>
+            <h2>{{ book.title }}</h2>
+            <p><strong>Publication Year:</strong> {{ book.publication_year }}</p>
+            <p><strong>Genre:</strong> {{ book.genre }}</p>
+            <p><strong>Short Description:</strong> {{ book.short_description }}</p>
+            <br>
+            <a href="{% url 'get_book_by_id' book_id=book.id %}">View Details</a>
+            <br><br>
+        </li>
+    {% endfor %}
+</ul>
