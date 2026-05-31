@@ -1,0 +1,39 @@
+<h1> Horse Tours </h1>
+{% for tour in tours %}
+    <h2> {{ tour.title }} </h2>
+    <p> {{ tour.description }} </p>
+    <p> Duration: {{ tour.duration_hours }} hours </p>
+    <p> Created at: {{ tour.created_at }} </p>
+        <h3> Categories </h3>
+        <p> 
+            {% for category in tour.categories.all %}
+                {{ category.name }} {% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    <p> No categories available. </p>
+            {% endfor %}
+        </p>
+    <h4> Comments: </h4>
+    {% for comment in tour.comments.all %}
+        <li>
+            <p>Author: {{ comment.author }}</p>
+            <p>Text: {{ comment.text }} </p>
+            <p>Created at: {{ comment.created_at }} </p>
+        </li>
+    {% empty %}
+        <p> No comments available. </p>
+    {% endfor %}
+{% endfor %}
+<h1> Horses and Owners </h1>
+{% for horse_owner in person_horses %}
+    <h2> {{ horse_owner.name }} </h2>
+    <p> Breed: {{ horse_owner.breed }} </p>
+    <p> Age: {{ horse_owner.age }} </p>
+    {% if horse_owner.person %}
+        <h4> Owner: {{ horse_owner.person.name }} </h4>
+        <p> Personal Number: {{ horse_owner.person.personal_number }} </p>
+        <p> Email: {{ horse_owner.person.email }} </p>
+        <p> Owner Created at: {{ horse_owner.person.created_at }} </p>
+    {% else %}
+        <h4> No owner available. </h4>
+    {% endif %}
+{% endfor %}
