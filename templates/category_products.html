@@ -1,0 +1,10 @@
+<p>Products in {{ category.name }}:</p>
+<a href="{% url 'view_categories' %}">Back to categories</a>
+<ul>
+    {% for product in products %}
+        <li>{{ product.name }} - ${{ product.price }}</li>
+        <ul>
+            <li>Category: {{ product.category.name }}</li>
+        </ul>
+    {% endfor %}
+</ul>
