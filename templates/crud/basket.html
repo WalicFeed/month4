@@ -1,0 +1,17 @@
+<h1>Basket Items</h1>
+<a href="{% url 'create_an_item' %}">Add New Item</a>
+<ul>
+    {% for item in items %}
+        <li>
+            <h2>Buyer: {{ item.user }}</h2>
+            <p>Product: {{ item.product }}</p>
+            <p>Quantity: {{ item.quantity }}</p>
+            <p>Description: {{ item.description }}</p>
+            <p>Created At: {{ item.created_at }}</p>
+                <p>
+                    <a href="{% url 'update_an_item' item.id %}">Edit</a> |
+                    <a href="{% url 'delete_an_item' item.id %}">Delete</a>
+                </p>
+        </li>
+    {% endfor %}
+</ul>

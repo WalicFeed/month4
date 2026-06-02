@@ -1,0 +1,7 @@
+<h1>Add Item</h1>
+
+<form action = "{% url 'create_an_item' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Item</button>
+</form>
