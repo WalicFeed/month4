@@ -1,0 +1,11 @@
+<ul>
+    {% for candidate in candidates %}
+        <li>
+            <h2>{{ candidate.username }}</h2>
+            <img src="{{ candidate.photo.url }}" width="200" height="150">
+            <p> Email: {{ candidate.email }}</p>
+            <p> Phone: {{ candidate.phone_number }}</p>
+            <p> Gender: {{ candidate.gender }}</p>
+        </li>
+    {% endfor %}
+</ul>

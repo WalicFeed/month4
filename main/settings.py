@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'race',
     'myShop',
     'BASKET',
+    'ankets2',
 ]
 
 MIDDLEWARE = [
