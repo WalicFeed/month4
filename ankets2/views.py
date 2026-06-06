@@ -3,6 +3,7 @@ from . import forms, models
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
+from .forms import CustomLoginForm
 
 def register(request):
     if request.method == 'POST':
@@ -16,14 +17,14 @@ def register(request):
 
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request=request, data=request.POST)
+        form = CustomLoginForm(request=request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
             return redirect('/candidates_anket/')
         context = {'form': form}
     else:
-        form = AuthenticationForm(request)
+        form = CustomLoginForm(request)
         context = {'form': form}
     return render(request, 'ankets/login.html', context)
 

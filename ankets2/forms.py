@@ -1,6 +1,10 @@
 from django import forms
 from . import models
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from captcha.fields import CaptchaField
+
+class CustomLoginForm(AuthenticationForm):
+    captcha = CaptchaField()
 
 class AnketForm(UserCreationForm):
     photo = forms.ImageField(required=True)

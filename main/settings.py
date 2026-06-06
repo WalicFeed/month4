@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'myShop',
     'BASKET',
     'ankets2',
+    'captcha',
 ]
 
 MIDDLEWARE = [
