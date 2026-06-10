@@ -27,6 +27,7 @@ class DuneBook(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     can_be_bought_url = models.URLField(verbose_name="Can Be Bought URL", blank=True, null=True)
+    views = models.PositiveIntegerField(default=0, null=True)
 
     def __str__(self):
         return self.title

@@ -4,6 +4,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from .forms import CustomLoginForm
+from django.core.paginator import Paginator
+from django.db.models import F
 
 def register(request):
     if request.method == 'POST':
@@ -30,4 +32,16 @@ def login_view(request):
 
 def candidates_view(request):
     ankets = models.Anket.objects.all().order_by('-id')
-    return render(request, 'ankets/candidates.html', {'candidates': ankets})
+    paginator = Paginator(ankets, 1)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'ankets/candidates.html', {'candidates': page_obj})
+
+def search_view(request):
+    query = request.GET.get('q')
+    if query:
+        ankets = models.Anket.objects.filter(username__icontains=query).order_by('-id')
+    else:
+        ankets = models.Anket.objects.all().order_by('-id')
+    context = {'query': query, 'candidates': ankets}
+    return render(request, 'ankets/candidates.html', context)

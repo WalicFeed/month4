@@ -13,5 +13,6 @@
     {% if book.can_be_bought_url %}
         <a href="{{ book.can_be_bought_url }}">Buy this book</a>
     {% endif %}
+    <p>Views: {{ book.views }}</p>
     <br><br>
     <a href="{% url 'get_books' %}">Back to books</a>

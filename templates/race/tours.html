@@ -1,4 +1,10 @@
 <h1> Horse Tours </h1>
+
+<form action="{% url 'race_search' %}" method="get">
+    <input type="search" name="q" placeholder="Search tours..." value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
 {% for tour in tours %}
     <h2> {{ tour.title }} </h2>
     <p> {{ tour.description }} </p>
@@ -37,3 +43,21 @@
         <h4> No owner available. </h4>
     {% endif %}
 {% endfor %}
+
+<div class="pagination">
+        <span class="step-links">
+            {% if tours.has_previous %}
+                <a href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo; Первая</a>
+                <a href="?page={{ tours.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ tours.number }} из {{ tours.paginator.num_pages }}.
+            </span>
+
+            {% if tours.has_next %}
+                <a href="?page={{ tours.next_page_number }}{% if query %}&q={{ query }}{% endif %}">Следующая</a>
+                <a href="?page={{ tours.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>

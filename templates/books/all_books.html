@@ -1,4 +1,8 @@
 <h1>Dune books</h1>
+<form method="get" action="{% url 'search_books' %}" enctype="multipart/form-data">
+    <input type="text" name="q" placeholder="Search by title or author">
+    <button type="submit">Search</button>
+</form>
 <ul>
     {% for book in books %}
         <li>
@@ -12,3 +16,20 @@
         </li>
     {% endfor %}
 </ul>
+<div class="pagination">
+        <span class="step-links">
+            {% if books.has_previous %}
+                <a href="?page=1">&laquo; Первая</a>
+                <a href="?page={{ books.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ books.number }} из {{ books.paginator.num_pages }}.
+            </span>
+
+            {% if books.has_next %}
+                <a href="?page={{ books.next_page_number }}">Следующая</a>
+                <a href="?page={{ books.paginator.num_pages }}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>

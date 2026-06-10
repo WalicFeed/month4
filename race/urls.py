@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('tours/', views.tour_list_view, name='tour_list'),
+    path('search/', views.search_view, name='race_search'),
 ]

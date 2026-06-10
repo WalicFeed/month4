@@ -10,6 +10,7 @@ class Anket(User):
     reason_to_join = models.CharField(max_length=200)
     hours_per_week = models.IntegerField()
     satisfaction_level = models.IntegerField()
+    views = models.PositiveBigIntegerField(default=0, null=True)
 
     def __str__(self):
         return self.username

@@ -15,6 +15,7 @@ class HorseTour(models.Model):
     duration_hours = models.IntegerField(verbose_name='Продолжительность (часы)')
     categories = models.ManyToManyField(HorseTourCategory, verbose_name='Категории тура', related_name='tours')
     created_at = models.DateTimeField(auto_now_add=True)
+    views = models.PositiveIntegerField(default=0, null=True)
 
     def __str__(self):
         return f"{self.title} - {', '.join([c.name for c in self.categories.all()])}"
