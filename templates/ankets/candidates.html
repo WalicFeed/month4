@@ -16,8 +16,8 @@
 <div class="pagination">
         <span class="step-links">
             {% if candidates.has_previous %}
-                <a href="?page=1">&laquo; Первая</a>
-                <a href="?page={{ candidates.previous_page_number }}">Предыдущая</a>
+                <a href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo; Первая</a>
+                <a href="?page={{ candidates.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">Предыдущая</a>
             {% endif %}
 
             <span class="current">
@@ -25,8 +25,8 @@
             </span>
 
             {% if candidates.has_next %}
-                <a href="?page={{ candidates.next_page_number }}">Следующая</a>
-                <a href="?page={{ candidates.paginator.num_pages }}">Последняя &raquo;</a>
+                <a href="?page={{ candidates.next_page_number }}{% if query %}&q={{ query }}{% endif %}">Следующая</a>
+                <a href="?page={{ candidates.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">Последняя &raquo;</a>
             {% endif %}
         </span>
     </div>
