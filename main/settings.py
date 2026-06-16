@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'BASKET',
     'ankets2',
     'captcha',
+    'CineBoard',
 ]
 
 MIDDLEWARE = [

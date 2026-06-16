@@ -1,0 +1,13 @@
+<h1>{{ movie.title }}</h1>
+{% if movie.photo %}<img src="{{ movie.photo.url }}" width="300">{% endif %}
+<p>Year: {{ movie.year }}</p>
+<p>Genre: {{ movie.genre }}</p>
+<p>Creator: {{ movie.creator }}</p>
+<p>Country: {{ movie.country_of_prodaction }}</p>
+<p>Score: {{ movie.score }}</p>
+<p>Recommended: {{ movie.do_recommend }}</p>
+<p>{{ movie.describtion }}</p>
+
+<a href="{% url 'movie_update' movie.id %}">Edit</a>|
+<a href="{% url 'movie_delete' movie.id %}">Delete</a>|
+<a href="{% url 'CineBoard_view' %}">Back to Movie List</a>

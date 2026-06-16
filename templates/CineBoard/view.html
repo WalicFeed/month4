@@ -1,0 +1,45 @@
+<h1>Movies</h1>
+
+<form method="get" action="{% url 'CineBoard_view' %}">
+    <input type="text" name="q" placeholder="Search by title" value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+<p>
+    <p>Genres:</p>
+    <a href="{% url 'CineBoard_view' %}">All</a>
+    {% for genre in genres %}
+        | <a href="{% url 'CineBoard_view' %}?genre={{ genre }}">{{ genre }}</a>
+    {% endfor %}
+</p>
+{% if selected_genre %}<p>Filtered by genre: <strong>{{ selected_genre }}</strong></p>{% endif %}
+<p><a href="{% url 'CineBoard_create' %}">Create a new movie</a></p>
+<ul>
+    {% for movie in movies %}
+        <li>
+            <p>{{ movie.title }}</p> ({{ movie.year }})
+            {% if movie.photo %}<br><img src="{{ movie.photo.url }}" alt="Movie Photo" width="200" height="150">{% endif %}
+            <br>
+            <a href="{% url 'movie_update' movie.id %}">Edit</a>|
+            <a href="{% url 'movie_delete' movie.id %}">Delete</a>|
+            <a href="{% url 'movie_detail' movie.id %}">Details</a>
+        </li>
+    {% endfor %}
+</ul>
+<div class="pagination">
+        <span class="step-links">
+            {% if movies.has_previous %}
+                <a href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo; Первая</a>
+                <a href="?page={{ movies.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ movies.number }} из {{ movies.paginator.num_pages }}.
+            </span>
+
+            {% if movies.has_next %}
+                <a href="?page={{ movies.next_page_number }}{% if query %}&q={{ query }}{% endif %}">Следующая</a>
+                <a href="?page={{ movies.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+<p><a href="{% url 'CineBoard_logout' %}">Logout</a></p>

@@ -11,5 +11,6 @@ urlpatterns = [
     path('', include('myShop.urls')),
     path('', include('BASKET.urls')),
     path('', include('ankets2.urls')),
+    path('', include('CineBoard.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
